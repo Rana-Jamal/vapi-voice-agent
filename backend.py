@@ -83,7 +83,7 @@ def cancel_appointment(request: CancelAppointmentRequest, db: Session = Depends(
         raise HTTPException(status_code=404, detail="No matching appointment found")
 
     for appointment in appointments:
-        appointment.canceled = True   # ✅ FIXED
+        appointment.canceled = True   
 
     db.commit()
 
@@ -108,7 +108,7 @@ def list_appointment(date: dt.date, db: Session = Depends(get_db)):
         .order_by(Appointment.start_time.asc())
     )
 
-    appointments = result.scalars().all()   # ✅ FIXED
+    appointments = result.scalars().all()   
 
     return appointments
 
